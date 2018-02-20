@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         var text = ""
         thread {
             val position = user.size() + 1
-            val item = User(position, "taro", "ngsw")
+            val item = User(position, "taro", "ngsw", 24)
             db.using(Runnable {
                 user.insert(item)
                 text += "${item.uid}: ${item.firstName} ${item.lastName}\n"
