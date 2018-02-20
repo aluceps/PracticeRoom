@@ -1,5 +1,6 @@
 package me.aluceps.practiceroom
 
+import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,7 +17,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeDatabase() {
-        dao = App().database.userDao()
+        dao = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "practice-room")
+                .fallbackToDestructiveMigration()
+                .build()
+                .userDao()
     }
 
     private fun initializeView() {
