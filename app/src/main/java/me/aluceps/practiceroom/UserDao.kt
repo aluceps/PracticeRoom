@@ -7,6 +7,9 @@ import android.arch.persistence.room.Query
 
 @Dao
 interface UserDao {
+    @Query("SELECT count(*) FROM user")
+    fun size(): Int
+
     @Query("SELECT * FROM user")
     fun getAll(): List<User>
 
@@ -17,7 +20,7 @@ interface UserDao {
     fun findByName(first: String, last: String): User
 
     @Insert
-    fun insertAll(vararg users: User)
+    fun insert(user: User)
 
     @Delete
     fun delete(user: User)
