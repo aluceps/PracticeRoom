@@ -40,21 +40,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun insert() {
-        var text = ""
         thread {
             db.using(Runnable {
                 val item = User(user.size(), "taro", "ngsw", 24)
                 user.insert(item)
-                text += "${item.uid}: ${item.firstName} ${item.lastName}\n"
+                view.text(item)
             })
-            view.text(text)
         }
     }
 
     private fun selectAll() {
         var text = ""
         thread {
-            user.getAll().forEach { text += "${it.uid}: ${it.firstName} ${it.lastName}\n" }
+            user.getAll().forEach { text += "$it\n" }
             view.text(text)
         }
     }
@@ -71,6 +69,12 @@ class MainActivity : AppCompatActivity() {
     private fun TextView.text(value: String) {
         post({
             text = value
+        })
+    }
+
+    private fun TextView.text(user: User) {
+        post({
+            text = user.toString()
         })
     }
 
