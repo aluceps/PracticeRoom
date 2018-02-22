@@ -4,6 +4,9 @@ import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import me.aluceps.practiceroom.data.db.AppDatabase
+import me.aluceps.practiceroom.data.db.dao.UserDao
+import me.aluceps.practiceroom.data.db.entity.User
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {

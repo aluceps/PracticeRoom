@@ -1,4 +1,4 @@
-package me.aluceps.practiceroom
+package me.aluceps.practiceroom.data.db.entity
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
