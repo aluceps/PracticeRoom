@@ -1,25 +1,22 @@
 package me.aluceps.practiceroom
 
-import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import me.aluceps.practiceroom.data.db.AppDatabase
+import me.aluceps.practiceroom.data.db.UserDatabase
 import me.aluceps.practiceroom.data.db.entity.User
+import javax.inject.Inject
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
-    private val db by lazy {
-        Room.databaseBuilder(applicationContext, AppDatabase::class.java, "practice-room.db")
-                .fallbackToDestructiveMigration()
-                .build()
-    }
+    @Inject
+    lateinit var db: AppDatabase
 
-    private val user by lazy {
-        db.userDao()
-    }
+    @Inject
+    lateinit var userDatabase: UserDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,27 +38,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun insert() {
         thread {
-            db.using(Runnable {
-                val item = User(user.size(), "taro", "ngsw", 24)
-                user.insert(item)
-                view.text(item)
-            })
+            val item = User(userDatabase.size(), "taro", "ngsw", 24)
+            userDatabase.insertUser(item)
+            view.text(item)
         }
     }
 
     private fun selectAll() {
         var text = ""
         thread {
-            user.getAll().forEach { text += "$it\n" }
+            userDatabase.getAllUsers().forEach { text += "$it\n" }
             view.text(text)
         }
     }
 
     private fun clear() {
         thread {
-            db.using(Runnable {
-                user.getAll().forEach { user.delete(it) }
-            })
+            userDatabase.getAllUsers().forEach { userDatabase.deleteUser(it) }
             view.text("")
         }
     }
