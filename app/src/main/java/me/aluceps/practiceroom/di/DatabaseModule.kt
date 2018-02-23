@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room
 import dagger.Module
 import dagger.Provides
 import me.aluceps.practiceroom.data.db.AppDatabase
+import me.aluceps.practiceroom.data.db.UserDatabase
 import me.aluceps.practiceroom.data.db.UserRoomDatabase
 import me.aluceps.practiceroom.data.db.dao.UserDao
 import javax.inject.Singleton
@@ -18,13 +19,17 @@ open class DatabaseModule {
 
     @Singleton
     @Provides
-    open fun provideDb(app: Application) =
+    open fun provideDb(app: Application): AppDatabase =
             Room.databaseBuilder(app, AppDatabase::class.java, "practice-room.db")
                     .fallbackToDestructiveMigration()
                     .build()
 
     @Singleton
     @Provides
-    fun provideUserDatabase(appDatabase: AppDatabase, userDao: UserDao) =
+    fun providesUserDao(db: AppDatabase): UserDao = db.userDao()
+
+    @Singleton
+    @Provides
+    fun provideUserDatabase(appDatabase: AppDatabase, userDao: UserDao): UserDatabase =
             UserRoomDatabase(appDatabase, userDao)
 }

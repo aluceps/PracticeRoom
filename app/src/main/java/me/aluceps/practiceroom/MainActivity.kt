@@ -3,6 +3,8 @@ package me.aluceps.practiceroom
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
+import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import me.aluceps.practiceroom.data.db.AppDatabase
 import me.aluceps.practiceroom.data.db.UserDatabase
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidInjection.inject(this)
         setContentView(R.layout.activity_main)
         initializeView()
     }
@@ -69,15 +72,5 @@ class MainActivity : AppCompatActivity() {
         post({
             text = user.toString()
         })
-    }
-
-    private fun AppDatabase.using(runnable: Runnable) {
-        beginTransaction()
-        try {
-            runnable.run()
-            setTransactionSuccessful()
-        } finally {
-            endTransaction()
-        }
     }
 }
