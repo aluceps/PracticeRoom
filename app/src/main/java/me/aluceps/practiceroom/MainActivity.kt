@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import dagger.android.AndroidInjection
-import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import me.aluceps.practiceroom.data.db.AppDatabase
 import me.aluceps.practiceroom.data.db.UserDatabase
