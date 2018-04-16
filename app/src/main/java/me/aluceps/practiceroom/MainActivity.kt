@@ -2,6 +2,7 @@ package me.aluceps.practiceroom
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.method.ScrollingMovementMethod
 import android.widget.TextView
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initializeView() {
         view.text = "Hello World..."
+        view.movementMethod = ScrollingMovementMethod.getInstance()
         add.setOnClickListener { insert() }
         show.setOnClickListener { selectAll() }
         clear.setOnClickListener { clear() }
