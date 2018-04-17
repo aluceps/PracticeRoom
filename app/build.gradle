@@ -32,10 +32,10 @@ dependencies {
 
     // Dagger
     implementation 'com.google.dagger:dagger:2.15'
-    implementation 'com.google.dagger:dagger-android:2.14.1'
-    implementation 'com.google.dagger:dagger-android-support:2.14.1'
+    implementation 'com.google.dagger:dagger-android:2.15'
+    implementation 'com.google.dagger:dagger-android-support:2.15'
     kapt 'com.google.dagger:dagger-compiler:2.15'
-    kapt 'com.google.dagger:dagger-android-processor:2.14.1'
+    kapt 'com.google.dagger:dagger-android-processor:2.15'
 
     // Android Architecture Component
     implementation 'android.arch.lifecycle:runtime:1.1.1'
