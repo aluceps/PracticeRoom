@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun insert() {
         thread {
-            val item = User(userDatabase.count(), "taro", "ngsw", 24)
+            val item = User(userDatabase.count(), "taro", "nagasawa")
             userDatabase.insert(item)
             view.text(item)
         }

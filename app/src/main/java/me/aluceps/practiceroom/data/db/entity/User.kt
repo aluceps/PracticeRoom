@@ -11,10 +11,9 @@ data class User(
         @ColumnInfo(name = "first_name")
         val firstName: String,
         @ColumnInfo(name = "last_name")
-        val lastName: String,
-        val age: Int
+        val lastName: String
 ) {
     override fun toString(): String {
-        return "uid=$uid firstName=$firstName lastName=$lastName age=$age"
+        return "uid=$uid first=$firstName last=$lastName"
     }
 }

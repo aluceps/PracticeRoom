@@ -17,8 +17,8 @@ abstract class UserDao {
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
     abstract fun byIds(userIds: List<Int>): List<User>
 
-    @Query("SELECT * FROM user WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
-    abstract fun byName(first: String, last: String): User
+//    @Query("SELECT * FROM user WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
+//    abstract fun byName(first: String, last: String): User
 
     @Insert
     abstract fun insert(user: User)
