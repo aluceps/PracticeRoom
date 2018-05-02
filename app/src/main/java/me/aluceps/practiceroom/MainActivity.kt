@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun insert() {
         thread {
-            val item = User(userDatabase.size(), "taro", "ngsw", 24)
-            userDatabase.insertUser(item)
+            val item = User(userDatabase.count(), "taro", "ngsw", 24)
+            userDatabase.insert(item)
             view.text(item)
         }
     }
@@ -51,27 +51,27 @@ class MainActivity : AppCompatActivity() {
     private fun selectAll() {
         var text = ""
         thread {
-            userDatabase.getAllUsers().forEach { text += "$it\n" }
+            userDatabase.all().forEach { text += "$it\n" }
             view.text(text)
         }
     }
 
     private fun clear() {
         thread {
-            userDatabase.getAllUsers().forEach { userDatabase.deleteUser(it) }
+            userDatabase.all().forEach { userDatabase.delete(it) }
             view.text("")
         }
     }
 
     private fun TextView.text(value: String) {
-        post({
+        post {
             text = value
-        })
+        }
     }
 
     private fun TextView.text(user: User) {
-        post({
+        post {
             text = user.toString()
-        })
+        }
     }
 }

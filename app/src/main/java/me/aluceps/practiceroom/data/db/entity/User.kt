@@ -15,6 +15,6 @@ data class User(
         val age: Int
 ) {
     override fun toString(): String {
-        return "$uid: $firstName $lastName"
+        return "uid=$uid firstName=$firstName lastName=$lastName age=$age"
     }
 }

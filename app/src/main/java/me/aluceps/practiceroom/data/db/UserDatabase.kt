@@ -4,11 +4,11 @@ import me.aluceps.practiceroom.data.db.entity.User
 
 interface UserDatabase {
 
-    fun getAllUsers(): List<User>
+    fun all(): List<User>
 
-    fun insertUser(user: User)
+    fun insert(user: User)
 
-    fun deleteUser(user: User)
+    fun delete(user: User)
 
-    fun size(): Int
+    fun count(): Int
 }

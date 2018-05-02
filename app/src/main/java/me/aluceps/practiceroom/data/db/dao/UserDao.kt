@@ -9,16 +9,16 @@ import me.aluceps.practiceroom.data.db.entity.User
 @Dao
 abstract class UserDao {
     @Query("SELECT count(*) FROM user")
-    abstract fun size(): Int
+    abstract fun count(): Int
 
     @Query("SELECT * FROM user")
-    abstract fun getAll(): List<User>
+    abstract fun all(): List<User>
 
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    abstract fun loadAllByIds(userIds: List<Int>): List<User>
+    abstract fun byIds(userIds: List<Int>): List<User>
 
     @Query("SELECT * FROM user WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
-    abstract fun findByName(first: String, last: String): User
+    abstract fun byName(first: String, last: String): User
 
     @Insert
     abstract fun insert(user: User)

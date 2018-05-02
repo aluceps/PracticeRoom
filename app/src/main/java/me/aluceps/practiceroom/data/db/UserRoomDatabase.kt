@@ -9,19 +9,19 @@ class UserRoomDatabase @Inject constructor(
         private val userDao: UserDao
 ) : UserDatabase {
 
-    override fun getAllUsers() = userDao.getAll()
+    override fun all() = userDao.all()
 
-    override fun insertUser(user: User) {
+    override fun insert(user: User) {
         database.runInTransaction {
             userDao.insert(user)
         }
     }
 
-    override fun deleteUser(user: User) {
+    override fun delete(user: User) {
         database.runInTransaction {
             userDao.delete(user)
         }
     }
 
-    override fun size(): Int = userDao.size()
+    override fun count(): Int = userDao.count()
 }
